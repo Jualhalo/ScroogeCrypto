@@ -1,0 +1,39 @@
+<!--The form used to input the API call parameters, when the user clicks the submit button,
+    the onSubmit method will be run-->
+
+<form [formGroup]="requestForm" (ngSubmit)="onSubmit(requestForm.value)">
+    <div class="form">
+        <ul>
+            <li><p>Start date:</p></li>
+            <li><input id="startDate" type="date" formControlName="startDate" placeholder="enter start date"></li>
+        </ul>
+        <ul>
+            <li><p>End date:</p></li>
+            <li><input id="endDate" type="date" formControlName="endDate" placeholder="enter end date"></li>
+        </ul>
+        <!--Crypto & Fiat currencies are listed in the select input fields below, 
+            when more are added to the arrays in the currencies service they will become selectable here-->
+        <ul>
+            <li><p>Crypto currency:</p></li>
+            <li>
+                <select formControlName="crypto">
+                    <option [ngValue]="null" disabled>Select Coin</option>
+                    <option *ngFor="let crypto of cryptoCurrencies" [ngValue]="crypto">{{crypto}}</option>
+                </select>
+            </li>
+        </ul>
+        <ul>
+            <li><p>Fiat Currency:</p></li>
+            <li>
+                <select formControlName="fiat">
+                    <option [ngValue]="null" disabled>Select Fiat</option>
+                    <option *ngFor="let fiat of fiatCurrencies" [ngValue]="fiat">{{fiat}}</option>
+                </select>
+            </li>
+        </ul> 
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
+
+

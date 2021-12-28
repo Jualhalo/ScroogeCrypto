@@ -1,0 +1,41 @@
+.container {
+    height: 100%;
+    width: 100%;  
+}
+.content {
+    height: 90%;
+    width: 50%;
+    margin: auto;
+    margin-top: 3em;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: center;
+}
+.header {
+    background-color:lightgray;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+}
+.form {  
+    padding-bottom: 5%;
+    background-color:#f1f1f1;
+}
+.resultsBlock {
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+@media all and (max-width: 1200px) {  
+    .content {
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    font-size: 0.8em;
+    width: 75%;
+    }
+}
+@media all and (max-width: 800px) {
+    .content {
+        width: 65%;
+        padding-left: 0%;
+        padding-right: 0%;
+    }
+}

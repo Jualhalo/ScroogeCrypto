@@ -1,0 +1,33 @@
+<!--If there's a string assigned to the error variable, it will be
+    the only div shown to the user.-->
+<div *ngIf="error" class="error">
+    {{error}}
+</div>
+<!--If the api fetch response contained no data and no errors,
+    inform the user that the input should be re-checked.-->
+<div *ngIf="dataIsEmpty && !error" class="noData">
+    <p>
+        No data received. Please re-check your form input.
+    </p>
+</div>
+<!--If the api fetch response contained data and has been processed,
+    show the data stored in the results object properties to the user.-->
+<div *ngIf="haveResults && !error" class="results">
+    <div>
+        <p>The longest bearish trend was {{results.longestBearishTrendLength}} days, 
+            from {{results.longestBearishTrendStart}} to {{results.longestBearishTrendEnd}}.
+        </p>
+    </div>
+    <div>
+        <p>The highest trading volume was {{results.highestTradingVolumeValue}} {{results.fiatCurrency}} on {{results.highestTradingVolumeDate}}</p>
+    </div>
+    <!--If there were no profits to be had between any of the dates in the date range (the price was only decreasing),
+        the user will be informed that they should not buy nor sell.-->
+    <div *ngIf="results.doNotBuyOrSell">
+        <p>It is not advisable to buy nor sell {{results.cryptoCurrency}} on any of the days in the current date range.</p>
+    </div>
+    <div *ngIf="!results.doNotBuyOrSell">
+        <p>For maximum profit, the best day to buy {{results.cryptoCurrency}} in the current date range is {{results.bestBuyDate}}
+             and the best day to sell is {{results.bestSellDate}}.</p>
+    </div>
+</div>
