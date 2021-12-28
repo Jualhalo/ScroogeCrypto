@@ -1,8 +1,11 @@
+/*
+  This component creates and handles the input form 
+  that is used to decide the parameters for the API call
+*/
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormDataService } from '../formData.service';
 import { CurrenciesService } from '../currencies.service';
-
 
 @Component({
   selector: 'app-form',
@@ -22,6 +25,8 @@ export class FormComponent implements OnInit {
 
   ngOnInit(): void {
     this.createRequestForm();
+
+    //get the currencies for the form selector from the currencies service
     this.cryptoCurrencies = this.currenciesService.getCrypto();
     this.fiatCurrencies = this.currenciesService.getFiat();
   }
@@ -36,6 +41,7 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit(formData: any) {
+    //submits the parameters input in the form to the handle api data -component via form data service
     this.formdataservice.sendFormData({
       startDate: formData.startDate,
       endDate: formData.endDate,
