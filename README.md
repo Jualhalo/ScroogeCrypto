@@ -7,6 +7,8 @@ The app will find the longest bearish trend, the date with the highest total vol
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
 
+## Install
+
 To install the project, go to the project folder and run "npm install".
 After it's done installing you can run the app with "ng serve" and navigating to http://localhost:4200/
 
