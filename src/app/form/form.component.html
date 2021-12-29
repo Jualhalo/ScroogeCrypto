@@ -32,7 +32,12 @@
             </li>
         </ul> 
     </div>
-    <button type="submit">Submit</button>
+    <div class="invalidForm" *ngIf="formInvalid">
+        <p>
+            Please input all required fields.
+        </p>
+    </div>
+    <button type="submit">Submit</button> 
 </form>
 
 

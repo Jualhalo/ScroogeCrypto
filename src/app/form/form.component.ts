@@ -16,6 +16,7 @@ export class FormComponent implements OnInit {
   requestForm!: FormGroup;
   cryptoCurrencies: Array<string> = [];
   fiatCurrencies: Array<string> = [];
+  formInvalid: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -33,20 +34,26 @@ export class FormComponent implements OnInit {
 
   createRequestForm() {
     this.requestForm = this.fb.group({
-      startDate: [null],
-      endDate: [null],
-      crypto: [null],
-      fiat: [null],
+      startDate: [null, [Validators.required]],
+      endDate: [null, [Validators.required]],
+      crypto: [null, [Validators.required]],
+      fiat: [null, [Validators.required]],
     })
   }
 
   onSubmit(formData: any) {
     //submits the parameters input in the form to the handle api data -component via form data service
-    this.formdataservice.sendFormData({
-      startDate: formData.startDate,
-      endDate: formData.endDate,
-      crypto: formData.crypto,
-      fiat: formData.fiat,
-    });  
+    if (this.requestForm.invalid) {
+      this.formInvalid = true;
+      return;
+    } else {
+      this.formInvalid = false;
+      this.formdataservice.sendFormData({
+        startDate: formData.startDate,
+        endDate: formData.endDate,
+        crypto: formData.crypto,
+        fiat: formData.fiat,
+      });  
+    }
   }
 }

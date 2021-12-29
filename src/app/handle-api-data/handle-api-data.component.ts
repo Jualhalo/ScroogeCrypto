@@ -192,9 +192,10 @@ export class HandleApiDataComponent implements OnInit {
     /*
       Lastly assign the values to the variables that will be shown to the user.
       Also convert the time stamp to date format using convert unix date service.
+      The volume value is converted to two decimals
     */
     this.results.highestTradingVolumeDate = this.convertUnix.convertUnixStampToDate(timestamp);
-    this.results.highestTradingVolumeValue = highestVolume;
+    this.results.highestTradingVolumeValue = +(highestVolume.toFixed(2));
   }
 
   findBestDaysToBuyAndSell(data: MarketChartRange) {

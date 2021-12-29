@@ -13,6 +13,13 @@ ul {
     justify-content: center;
     align-items: center;
 }
+.invalidForm {
+    background-color: pink;
+    color: black;
+    padding-top: 0.3%;
+    padding-bottom: 0.3%;
+}
+
 @media all and (max-width: 800px) {
     ul {
         padding: 0;
