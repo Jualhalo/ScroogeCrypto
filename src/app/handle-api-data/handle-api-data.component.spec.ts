@@ -12,10 +12,17 @@ import mockdataDecreasingPriceJson from './testMockData/mockdataDecreasingPrice.
 describe('TestComponent', () => {
   let component: HandleApiDataComponent;
   let fixture: ComponentFixture<HandleApiDataComponent>;
+
+  //data from 2020-03-01 - 2020-03-19
   const mockAPIdata: MarketChartRange = mockdataJson;
+
   const mockAPIdataEmpty: MarketChartRange = mockdataEmptyJson;
   const mockAPIdataOneDay: MarketChartRange = mockdataOneDayJson;
+
+  //data from 2020
   const mockAPIdataYear: MarketChartRange = mockdataYearJson;
+
+  //data from 2020-02-24 to 2020-03-02, during this time the price only decreases
   const mockAPIdataDecreasingPrice: MarketChartRange = mockdataDecreasingPriceJson;
 
   beforeEach(async () => {
@@ -61,8 +68,8 @@ describe('TestComponent', () => {
 
   /*
     Test finding the best buy and sell dates. While the date 2020-03-19 is the day
-    of lowest price, it should not be considered the best buy date since it's the
-    last day in the date range.
+    of lowest price in the mock data, it should not be considered the best buy date 
+    since it's the last day in the date range.
 
     doNotBuyOrSell variable is tested using a mockdata where the daily price only
     decreases.

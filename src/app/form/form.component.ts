@@ -16,7 +16,12 @@ export class FormComponent implements OnInit {
   requestForm!: FormGroup;
   cryptoCurrencies: Array<string> = [];
   fiatCurrencies: Array<string> = [];
+
+  /*
+    These variables control the visibility of form error messages
+  */
   formInvalid: boolean = false;
+  invalidDates: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -42,12 +47,19 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit(formData: any) {
-    //submits the parameters input in the form to the handle api data -component via form data service
+    /*
+      submits the parameters input in the form to the handle api data -component 
+      via form data service if the form input is valid
+    */
+
     if (this.requestForm.invalid) {
       this.formInvalid = true;
       return;
-    } else {
+    } else if (formData.startDate > formData.endDate){
+      this.invalidDates = true; 
+    } else { 
       this.formInvalid = false;
+      this.invalidDates = false;
       this.formdataservice.sendFormData({
         startDate: formData.startDate,
         endDate: formData.endDate,

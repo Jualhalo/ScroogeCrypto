@@ -32,9 +32,15 @@
             </li>
         </ul> 
     </div>
+    <!--Show the user an error message if the form is invalid, or the start date is after the end date-->
     <div class="invalidForm" *ngIf="formInvalid">
         <p>
             Please input all required fields.
+        </p>
+    </div>
+    <div class="invalidForm" *ngIf="invalidDates">
+        <p>
+            Please re-check the input dates. (Start date shouldn't be after the end date)
         </p>
     </div>
     <button type="submit">Submit</button> 
