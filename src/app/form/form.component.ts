@@ -4,8 +4,8 @@
 */
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { FormDataService } from '../formData.service';
-import { CurrenciesService } from '../currencies.service';
+import { FormDataService } from '../services/formData.service';
+import { CurrenciesService } from '../services/currencies.service';
 
 @Component({
   selector: 'app-form',

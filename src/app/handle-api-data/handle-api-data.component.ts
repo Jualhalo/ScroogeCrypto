@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ConvertUnixDateService } from '../convert-unix-date.service';
-import { FetchAPIDataService } from '../fetch-apidata.service';
-import { FormDataService } from '../formData.service';
-import { GenerateURLService } from '../generate-url.service';
-import { MarketChartRange } from '../marketChartRange';
-import { MarketChartRangeParameter } from '../marketChartRangeParameter';
-import { BuyAndSellDates } from '../buyAndSellDates';
-import { Profits } from '../profits';
-import { Results } from '../results';
+import { ConvertUnixDateService } from '../services/convert-unix-date.service';
+import { FetchAPIDataService } from '../services/fetch-apidata.service';
+import { FormDataService } from '../services/formData.service';
+import { GenerateURLService } from '../services/generate-url.service';
+import { MarketChartRange } from '../interfaces/marketChartRange';
+import { MarketChartRangeParameter } from '../interfaces/marketChartRangeParameter';
+import { BuyAndSellDates } from '../interfaces/buyAndSellDates';
+import { Profits } from '../interfaces/profits';
+import { Results } from '../interfaces/results';
 
 @Component({
   selector: 'app-handle-api-data',
@@ -68,8 +68,8 @@ export class HandleApiDataComponent implements OnInit {
       Otherwise calls the handleAPIData method to process the data received.
     */
     this.apiservice.fetchAPIData(this.url).subscribe({
-      next: res => this.data = res,
-      error: err => this.error = err,
+      next: (res: MarketChartRange) => this.data = res,
+      error: (err: string | undefined) => this.error = err,
       complete: () => {
         this.error = undefined;
         this.handleAPIData(this.data);

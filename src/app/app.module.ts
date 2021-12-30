@@ -12,7 +12,7 @@ import { DatePipe } from '@angular/common';
   declarations: [
     AppComponent,
     FormComponent,
-    HandleApiDataComponent
+    HandleApiDataComponent,
   ],
   imports: [
     BrowserModule,

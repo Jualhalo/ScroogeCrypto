@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { MarketChartRangeParameter } from './marketChartRangeParameter';
+import { MarketChartRangeParameter } from '../interfaces/marketChartRangeParameter';
 import { ConvertUnixDateService } from './convert-unix-date.service';
 
 @Injectable({

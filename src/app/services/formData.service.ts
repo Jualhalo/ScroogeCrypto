@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { MarketChartRangeParameter } from './marketChartRangeParameter';
+import { MarketChartRangeParameter } from '../interfaces/marketChartRangeParameter';
 
 @Injectable({
   providedIn: 'root'

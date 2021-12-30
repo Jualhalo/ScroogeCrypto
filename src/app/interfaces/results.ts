@@ -1,3 +1,8 @@
+/*
+    Type definition for the Results object that contains the results from
+    processing the fetched API data. This contains all the data that the user
+    will see.
+*/
 export interface Results {
     cryptoCurrency: string,
     fiatCurrency: string,
