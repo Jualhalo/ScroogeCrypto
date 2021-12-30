@@ -27,7 +27,7 @@
         <p>It is not advisable to buy nor sell {{results.cryptoCurrency}} on any of the days in the current date range.</p>
     </div>
     <div *ngIf="!results.doNotBuyOrSell">
-        <p>For maximum profit, the best day to buy {{results.cryptoCurrency}} in the current date range is {{results.bestBuyDate}}
-             and the best day to sell is {{results.bestSellDate}}.</p>
+        <p>For maximum profit, you should buy {{results.cryptoCurrency}} on {{results.bestBuyDate}}
+             and then sell it on {{results.bestSellDate}}.</p>
     </div>
 </div>

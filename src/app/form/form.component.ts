@@ -56,6 +56,7 @@ export class FormComponent implements OnInit {
       this.formInvalid = true;
       return;
     } else if (formData.startDate > formData.endDate){
+      this.formInvalid = false;
       this.invalidDates = true; 
     } else { 
       this.formInvalid = false;

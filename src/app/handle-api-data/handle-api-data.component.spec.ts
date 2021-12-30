@@ -13,7 +13,7 @@ describe('TestComponent', () => {
   let component: HandleApiDataComponent;
   let fixture: ComponentFixture<HandleApiDataComponent>;
 
-  //data from 2020-03-01 - 2020-03-19
+  //data from 2020-03-01 - 2020-03-17
   const mockAPIdata: MarketChartRange = mockdataJson;
 
   const mockAPIdataEmpty: MarketChartRange = mockdataEmptyJson;
@@ -56,18 +56,18 @@ describe('TestComponent', () => {
   it('testing finding longest bearish trend', () => {
     component.findLongestBearishTrend(mockAPIdata);
     expect(component.results.longestBearishTrendLength).toBe(3);
-    expect(component.results.longestBearishTrendStart).toBe('2020-03-06');
-    expect(component.results.longestBearishTrendEnd).toBe('2020-03-09');
+    expect(component.results.longestBearishTrendStart).toBe('2020-03-07');
+    expect(component.results.longestBearishTrendEnd).toBe('2020-03-10');
   });
 
   it('testing finding the highest trading volume', () => {
     component.findHighestTradingVolume(mockAPIdata);
-    expect(component.results.highestTradingVolumeDate).toBe('2020-03-13');
-    expect(component.results.highestTradingVolumeValue).toBe(63031065653.37);
+    expect(component.results.highestTradingVolumeDate).toBe('2020-03-14');
+    expect(component.results.highestTradingVolumeValue).toBe(66714240550.25);
   });
 
   /*
-    Test finding the best buy and sell dates. While the date 2020-03-19 is the day
+    Test finding the best buy and sell dates. While the date 2020-03-17 is the day
     of lowest price in the mock data, it should not be considered the best buy date 
     since it's the last day in the date range.
 
@@ -76,8 +76,8 @@ describe('TestComponent', () => {
   */
   it('testing finding the best buy and sell dates', () => {
     component.findBestDaysToBuyAndSell(mockAPIdata);
-    expect(component.results.bestBuyDate).toBe('2020-03-16');
-    expect(component.results.bestSellDate).toBe('2020-03-17');
+    expect(component.results.bestBuyDate).toBe('2020-03-13');
+    expect(component.results.bestSellDate).toBe('2020-03-14');
     expect(component.results.doNotBuyOrSell).toBeFalsy;
     component.findBestDaysToBuyAndSell(mockAPIdataDecreasingPrice);
     expect(component.results.doNotBuyOrSell).toBeTruthy;
@@ -89,7 +89,7 @@ describe('TestComponent', () => {
     Therefore the expected length is 366 instead of 365.
   */
   it('testing handling data granularity', () => {
-    expect(component.handleDataGranularity(mockAPIdata.prices).length).toBe(18);
+    expect(component.handleDataGranularity(mockAPIdata.prices).length).toBe(17);
     expect(component.handleDataGranularity(mockAPIdataOneDay.prices).length).toBe(1);
     expect(component.handleDataGranularity(mockAPIdataYear.prices).length).toBe(366);
   })

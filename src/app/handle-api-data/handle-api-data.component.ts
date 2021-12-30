@@ -84,8 +84,8 @@ export class HandleApiDataComponent implements OnInit {
       In this case dataIsEmpty is set to true so that the user will be
       notified.
     */
-    if (Object.values(data).some(a => a.length === 0)) {
-      this.haveResults = false;
+    this.haveResults = false;
+    if (Object.values(data).some(a => a.length === 0)) {     
       this.dataIsEmpty = true;
     } else {
       /*
@@ -161,9 +161,12 @@ export class HandleApiDataComponent implements OnInit {
       Also convert the unix time stamps to date format using convert unix date service.
     */
     this.results.longestBearishTrendLength = longestBearishTrend.length - 1;
-    this.results.longestBearishTrendStart = this.convertUnix.convertUnixStampToDate(longestBearishTrend[0][0]);
+    this.results.longestBearishTrendStart = this.convertUnix.convertUnixStampToDate(
+      longestBearishTrend[0][0]
+    );
     this.results.longestBearishTrendEnd = this.convertUnix.convertUnixStampToDate(
-        longestBearishTrend[longestBearishTrend.length - 1][0]);
+        longestBearishTrend[longestBearishTrend.length - 1][0]
+    );
   }
 
   findHighestTradingVolume(data: MarketChartRange) {
@@ -207,6 +210,7 @@ export class HandleApiDataComponent implements OnInit {
       is in daily format.
     */
     let prices = this.handleDataGranularity(data.prices);
+    console.log(prices);
     
     /*
       calculateProfits method is called to build the array where all possible profits
@@ -237,8 +241,12 @@ export class HandleApiDataComponent implements OnInit {
       this.results.doNotBuyOrSell = true;
     } else {
       this.results.doNotBuyOrSell = false;
-      this.results.bestBuyDate = this.convertUnix.convertUnixStampToDate(prices[profits[bestProfit].buyDateIndex][0]);
-      this.results.bestSellDate = this.convertUnix.convertUnixStampToDate(prices[profits[bestProfit].sellDateIndex][0]);
+      this.results.bestBuyDate = this.convertUnix.convertUnixStampToDate(
+        prices[profits[bestProfit].buyDateIndex][0]
+      );
+      this.results.bestSellDate = this.convertUnix.convertUnixStampToDate(
+        prices[profits[bestProfit].sellDateIndex][0]
+      );
     }
     
   }
@@ -272,18 +280,35 @@ export class HandleApiDataComponent implements OnInit {
       newdata.push(data[0]);
       return newdata;
     /*
-      If the date range is below three months, find all data point
-      indexes that are divisible by 24 and push the values from them into
-      the array that is returned.
-
-      This ensures that the datapoints are closest to midnight.
+      If the date range is 90 days or less, find all data points
+      that are closest to midnight each day and add them to the array
+      that will be returned.
     */
     } else if (dateRange < threeMonths) {
-      for (let i = 0; i < data.length; i++) {
-        if (i % 24 === 0) {
-          newdata.push(data[i]);
+      
+      let dayToCheck = startDate; 
+      
+      /*
+        The amount of daily data points needed. To also include the last day
+        in the input date range, 1 needs to be added.
+      */
+      const datapoints: number = Math.round(dateRange/day) + 1;
+      /*
+        These nested loops find the datapoints that are closest to midnight
+        each day in the date range.
+      */
+      for (let i = 0; i < datapoints; i++) {
+        let diff: number = 0;
+        let closest: number = 0;
+        for (let j = 0; j < data.length; j++) {
+          diff = Math.abs(data[closest][0] - dayToCheck);
+          if (Math.abs(data[j][0] - dayToCheck) < diff) {
+            closest = j;
+          };
         }
-      }
+        newdata.push(data[closest]);
+        dayToCheck += day;
+      };
       return newdata;
     /*
       If the data is already in daily format, then nothing needs to 
@@ -297,8 +322,8 @@ export class HandleApiDataComponent implements OnInit {
   calculateProfits (prices:Array<any>) {
     /*
       This method finds all the profits between all the possible
-      buy and sell dates in the date range and pushes them into the profits 
-      that will be returned.
+      buy and sell dates in the date range and pushes them into the profits
+      array that is returned.
 
       It's assumed that Scrooge can't take the crypto currency he's bought 
       with him in the time machine (after all, crypto coins are not physical),
@@ -306,7 +331,7 @@ export class HandleApiDataComponent implements OnInit {
       sell dates.
 
       For example, if the day with the lowest price (the best day to buy) was the 
-      very last date in the input date range, it can't be considered the best buy date 
+      very last date in the input date range, that day can't be considered the best buy date 
       since no possible sell dates come after it. (unless a new fetch is done)
     */
     let buyDateIndex: number = 0;
