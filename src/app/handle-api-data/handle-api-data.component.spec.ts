@@ -77,7 +77,8 @@ describe('TestComponent', () => {
   it('testing finding the best buy and sell dates', () => {
     component.findBestDaysToBuyAndSell(mockAPIdata);
     expect(component.results.bestBuyDate).toBe('2020-03-16');
-    expect(component.results.bestSellDate).toBe('2020-03-18');
+    expect(component.results.bestSellDate).toBe('2020-03-17');
+    expect(component.results.doNotBuyOrSell).toBeFalsy;
     component.findBestDaysToBuyAndSell(mockAPIdataDecreasingPrice);
     expect(component.results.doNotBuyOrSell).toBeTruthy;
   })

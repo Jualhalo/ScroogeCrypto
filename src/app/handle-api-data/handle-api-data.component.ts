@@ -220,7 +220,7 @@ export class HandleApiDataComponent implements OnInit {
       Finds the index of the largest profit value in the profits array
     */
     for (let i=0; i < profits.length; i++) {
-      if(profits[i].profit > bestProfit) {
+      if(profits[i].profit > profits[bestProfit].profit) {
         bestProfit = i;
       }
     }
@@ -275,6 +275,8 @@ export class HandleApiDataComponent implements OnInit {
       If the date range is below three months, find all data point
       indexes that are divisible by 24 and push the values from them into
       the array that is returned.
+
+      This ensures that the datapoints are closest to midnight.
     */
     } else if (dateRange < threeMonths) {
       for (let i = 0; i < data.length; i++) {
@@ -347,6 +349,7 @@ export class HandleApiDataComponent implements OnInit {
         sellDateIndex,
       })
     }
-    return profits;
+    console.log(profits);
+    return profits; 
   }
 }

@@ -11,6 +11,7 @@
             <li><p>End date:</p></li>
             <li><input id="endDate" type="date" formControlName="endDate" placeholder="enter end date"></li>
         </ul>
+        
         <!--Crypto & Fiat currencies are listed in the select input fields below, 
             when more are added to the arrays in the currencies service they will become selectable here-->
         <ul>
@@ -32,6 +33,7 @@
             </li>
         </ul> 
     </div>
+
     <!--Show the user an error message if the form is invalid, or the start date is after the end date-->
     <div class="invalidForm" *ngIf="formInvalid">
         <p>
