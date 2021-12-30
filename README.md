@@ -9,9 +9,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Install
 
-To install the project, go to the project folder and run "npm install".
-After it's done installing you can run the app with "ng serve" and navigating to http://localhost:4200/
+To install the project, go to the project folder and run `npm install`.
+After it's done installing you can run the app with `ng serve` and navigating to http://localhost:4200/
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory
+
+## Unit tests
+
+Unit tests can be found in spec.ts files. Run `ng test` to run all unit tests.
