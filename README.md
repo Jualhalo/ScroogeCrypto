@@ -19,3 +19,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Unit tests
 
 Unit tests can be found in spec.ts files. Run `ng test` to run all unit tests.
+
+##Troubleshooting
+
+Check that you have the latest node.js. If `ng` opens an editor, this is an alias conflict for Mg editor, remove this by running the following command: `sudo apt purge ng-common ng-latin` and reinstall Angular CLI.
