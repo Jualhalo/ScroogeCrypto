@@ -210,7 +210,6 @@ export class HandleApiDataComponent implements OnInit {
       is in daily format.
     */
     let prices = this.handleDataGranularity(data.prices);
-    console.log(prices);
     
     /*
       calculateProfits method is called to build the array where all possible profits
@@ -374,7 +373,6 @@ export class HandleApiDataComponent implements OnInit {
         sellDateIndex,
       })
     }
-    console.log(profits);
     return profits; 
   }
 }
